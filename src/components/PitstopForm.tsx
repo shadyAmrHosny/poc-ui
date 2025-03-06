@@ -30,7 +30,7 @@ interface PitstopFormProps {
   className?: string;
 }
 
-type TireCompound = 'soft' | 'medium' | 'hard';
+type TireCompound = 'Soft' | 'Medium' | 'Hard';
 
 // Beta feature badge component
 const BetaBadge = () => (
@@ -67,7 +67,8 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
   const [driverPosition, setDriverPosition] = useState<number>(5);
   const [topSpeed, setTopSpeed] = useState<number>(310);
   const [lapsOnCurrentTires, setLapsOnCurrentTires] = useState<number>(8);
-  const [tireCompound, setTireCompound] = useState<TireCompound>('medium');
+  const [tireCompound, setTireCompound] = useState<TireCompound>('Medium');
+  const  [lapTime, setLapTime]= useState<number>(60)
 
   // Handle image upload
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,13 +123,14 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
         lapNumber,
         raceDistance,
         driverPosition,
-        tyreDegradation,
-        trackTemperature,
-        rainProbability, // Beta feature, but still sent to API
+        // tyreDegradation,
+        // trackTemperature,
+        // rainProbability, // Beta feature, but still sent to API
         gapToCarAhead,
         gapToCarBehind,
         lapsOnCurrentTires,
-        tireCompound
+        tireCompound,
+        lapTime
       };
       
       console.log("Submitting form with data:", predictionData);
@@ -179,7 +181,7 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
         <div className="inline-block px-3 py-1 text-xs font-medium text-primary bg-primary/10 rounded-full mb-2">
           F1 STRATEGY ASSISTANT
         </div>
-        <h1 className="text-4xl font-bold tracking-tight md:text-5xl mb-3">Pitstop Predictor 3600°</h1>
+        <h1 className="text-4xl font-bold tracking-tight md:text-5xl mb-3">Pitstop Predictor 360°</h1>
         <p className="text-muted-foreground max-w-xl mx-auto">
           Advanced AI analysis for optimal pitstop timing based on tyre condition and race factors
         </p>
@@ -214,20 +216,20 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
                 />
               </div>
               
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <label className="text-sm font-medium">Race Distance (Laps)</label>
-                  <span className="text-sm bg-secondary px-2 py-0.5 rounded-md">{raceDistance}</span>
-                </div>
-                <Slider
-                  value={[raceDistance]}
-                  min={20}
-                  max={90}
-                  step={1}
-                  onValueChange={(value) => setRaceDistance(value[0])}
-                  className="input-focus-ring"
-                />
-              </div>
+              {/*<div className="space-y-3">*/}
+              {/*  <div className="flex justify-between items-center">*/}
+              {/*    <label className="text-sm font-medium">Race Distance (Laps)</label>*/}
+              {/*    <span className="text-sm bg-secondary px-2 py-0.5 rounded-md">{raceDistance}</span>*/}
+              {/*  </div>*/}
+              {/*  <Slider*/}
+              {/*    value={[raceDistance]}*/}
+              {/*    min={20}*/}
+              {/*    max={90}*/}
+              {/*    step={1}*/}
+              {/*    onValueChange={(value) => setRaceDistance(value[0])}*/}
+              {/*    className="input-focus-ring"*/}
+              {/*  />*/}
+              {/*</div>*/}
               
               <div className="space-y-3 relative">
                 <div className="flex justify-between items-center">
@@ -311,41 +313,53 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
               </div>
               
               <Separator />
-              
-              <div className="grid grid-cols-2 gap-4">
+
+              <div className="grid grid-cols-3 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium block">Gap Ahead (sec)</label>
                   <Input
-                    type="number"
-                    step="0.1"
-                    min="0"
-                    max="30"
-                    value={gapToCarAhead}
-                    onChange={(e) => setGapToCarAhead(parseFloat(e.target.value))}
-                    className="input-focus-ring"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="120"
+                      value={gapToCarAhead}
+                      onChange={(e) => setGapToCarAhead(parseFloat(e.target.value))}
+                      className="input-focus-ring"
                   />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium block">Gap Behind (sec)</label>
                   <Input
-                    type="number"
-                    step="0.1"
-                    min="0"
-                    max="30"
-                    value={gapToCarBehind}
-                    onChange={(e) => setGapToCarBehind(parseFloat(e.target.value))}
-                    className="input-focus-ring"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="120"
+                      value={gapToCarBehind}
+                      onChange={(e) => setGapToCarBehind(parseFloat(e.target.value))}
+                      className="input-focus-ring"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium block">Lap Time (sec)</label>
+                  <Input
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="120"
+                      value={lapTime}
+                      onChange={(e) =>setLapTime(parseFloat(e.target.value))}
+                      className="input-focus-ring"
                   />
                 </div>
               </div>
             </CardContent>
           </Card>
-          
+
           {/* Tyre Condition Section */}
           <Card className="card-shadow">
             <CardHeader>
               <CardTitle className="flex items-center">
-                <Gauge className="mr-2 text-primary h-5 w-5" />
+                <Gauge className="mr-2 text-primary h-5 w-5"/>
                 Tyre Condition Analysis
               </CardTitle>
               <CardDescription>
@@ -355,7 +369,9 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
             <CardContent className="space-y-6">
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <label className="text-sm font-medium">Estimated Degradation (%)</label>
+                  <label className="text-sm font-medium">Estimated Degradation (%)
+                    <BetaBadge />
+                  </label>
                   <span className="text-sm bg-secondary px-2 py-0.5 rounded-md">{tyreDegradation}</span>
                 </div>
                 <Slider
@@ -423,19 +439,19 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
                     <SelectValue placeholder="Select tire compound" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="soft">
+                    <SelectItem value="Soft">
                       <div className="flex items-center">
                         <div className="w-3 h-3 rounded-full bg-gray-100 dark:bg-gray-300 mr-2"></div>
                         Soft
                       </div>
                     </SelectItem>
-                    <SelectItem value="medium">
+                    <SelectItem value="Medium">
                       <div className="flex items-center">
                         <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
                         Medium
                       </div>
                     </SelectItem>
-                    <SelectItem value="hard">
+                    <SelectItem value="Hard">
                       <div className="flex items-center">
                         <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
                         Hard

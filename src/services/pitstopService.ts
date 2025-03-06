@@ -8,13 +8,14 @@ export interface PitstopPredictionData {
   lapNumber: number;
   raceDistance: number;
   driverPosition:number;
-  tyreDegradation: number;
-  trackTemperature: number;
-  rainProbability: number; // Beta feature - not actually used in API yet
+  // tyreDegradation: number;
+  // trackTemperature: number;
+  // rainProbability: number; // Beta feature - not actually used in API yet
   gapToCarAhead: number;
   gapToCarBehind: number;
   lapsOnCurrentTires: number;
   tireCompound: string;
+  lapTime: number;
   // Removed tyreImage as we won't send it in the request anymore
 }
 
