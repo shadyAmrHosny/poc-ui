@@ -67,7 +67,9 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
   const [driverPosition, setDriverPosition] = useState<number>(5);
   const [topSpeed, setTopSpeed] = useState<number>(310);
   const [lapsOnCurrentTires, setLapsOnCurrentTires] = useState<number>(8);
-  const [tireCompound, setTireCompound] = useState<TireCompound>('Medium');
+ // const [tireCompound, setTireCompound] = useState<TireCompound>('Soft');
+  const [tireCompound, setTireCompound] = useState<number>(1);
+
   const  [lapTime, setLapTime]= useState<number>(60)
 
   // Handle image upload
@@ -439,19 +441,19 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
                     <SelectValue placeholder="Select tire compound" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Soft">
+                    <SelectItem value="soft">
                       <div className="flex items-center">
                         <div className="w-3 h-3 rounded-full bg-gray-100 dark:bg-gray-300 mr-2"></div>
                         Soft
                       </div>
                     </SelectItem>
-                    <SelectItem value="Medium">
+                    <SelectItem value="medium">
                       <div className="flex items-center">
                         <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
                         Medium
                       </div>
                     </SelectItem>
-                    <SelectItem value="Hard">
+                    <SelectItem value="hard">
                       <div className="flex items-center">
                         <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
                         Hard
