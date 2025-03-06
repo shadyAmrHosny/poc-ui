@@ -8,6 +8,7 @@ export interface PitstopPredictionData {
   lapNumber: number;
   raceDistance: number;
   driverPosition:number;
+  topSpeed: number;
   // tyreDegradation: number;
   // trackTemperature: number;
   // rainProbability: number; // Beta feature - not actually used in API yet
@@ -20,10 +21,10 @@ export interface PitstopPredictionData {
 }
 
 export interface PredictionResult {
-  recommendedLap: number;
+  //recommendedLap: number;
   confidence: number;
-  estimatedTimeGain: string;
-  explanation: string;
+  //estimatedTimeGain: string;
+ // explanation: string;
 }
 
 export class PitstopService {
@@ -110,29 +111,35 @@ export class PitstopService {
 
   static async predictPitstop(data: PitstopPredictionData): Promise<PredictionResult> {
     try {
+      let tireCompoundNumber;
+      if (data.tireCompound==="Soft")tireCompoundNumber=0;
+      else if (data.tireCompound==="Medium")tireCompoundNumber=1;
+      else tireCompoundNumber=2;
 
-      // const requestBody = {
-      //   lapNumber: data.lapNumber,
-      //   raceDistance: data.raceDistance,
-      //   tyreDegradation: data.tyreDegradation,
-      //   trackTemperature: data.trackTemperature,
-      //   rainProbability: data.rainProbability,
-      //   gapToCarAhead: data.gapToCarAhead,
-      //   gapToCarBehind: data.gapToCarBehind,
-      //   driverPosition:data.driverPosition,
-      //   lapsOnCurrentTires:data.lapsOnCurrentTires,
-      //   tireCompound:data.tireCompound,
-      // };
+
+      const requestBody = {
+        fetures:[[
+            data.lapNumber,
+            tireCompoundNumber,
+            data.driverPosition,
+            data.lapsOnCurrentTires,
+            data.gapToCarAhead,
+            data.gapToCarBehind,
+            data.lapTime,
+            data.topSpeed,
+        ]]
+      }
 
       //console.log("Sending JSON data to backend:", requestBody);
 
       console.log(`am sending to the ur\`${this.API_URL}\``)
+      console.log('the data am sending',requestBody)
       const response = await fetch(this.API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', // Set header to JSON
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(requestBody),
       });
 
       if (!response.ok) {

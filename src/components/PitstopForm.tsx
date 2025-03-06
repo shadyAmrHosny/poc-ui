@@ -123,6 +123,7 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
         lapNumber,
         raceDistance,
         driverPosition,
+        topSpeed,
         // tyreDegradation,
         // trackTemperature,
         // rainProbability, // Beta feature, but still sent to API
@@ -561,25 +562,25 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
               <CardTitle className="text-center">Pitstop Recommendation</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="grid grid-cols-3 gap-4 text-center">
-                <div className="bg-secondary/50 p-4 rounded-lg">
-                  <p className="text-sm text-muted-foreground mb-1">Recommended On</p>
-                  <p className="text-2xl font-bold">Lap {result.recommendedLap}</p>
-                </div>
-                <div className="bg-secondary/50 p-4 rounded-lg">
+              <div className="grid grid-cols-16  text-center">
+                {/*<div className="bg-secondary/50 p-4 rounded-lg">*/}
+                {/*  <p className="text-sm text-muted-foreground mb-1">Recommended On</p>*/}
+                {/*  <p className="text-2xl font-bold">Lap {result.recommendedLap}</p>*/}
+                {/*</div>*/}
+                <div className="bg-secondary/50 p-6 rounded-lg text-center">
                   <p className="text-sm text-muted-foreground mb-1">Confidence</p>
-                  <p className="text-2xl font-bold">{result.confidence}%</p>
+                  <p className="text-4xl font-bold">{result.confidence}%</p>
                 </div>
-                <div className="bg-secondary/50 p-4 rounded-lg">
-                  <p className="text-sm text-muted-foreground mb-1">Time Gain</p>
-                  <p className="text-2xl font-bold">{result.estimatedTimeGain}</p>
-                </div>
+                {/*<div className="bg-secondary/50 p-4 rounded-lg">*/}
+                {/*  <p className="text-sm text-muted-foreground mb-1">Time Gain</p>*/}
+                {/*  <p className="text-2xl font-bold">{result.estimatedTimeGain}</p>*/}
+                {/*</div>*/}
               </div>
-              
-              <div className="p-4 rounded-lg bg-secondary/30">
-                <p className="text-sm font-medium mb-2">AI Analysis:</p>
-                <p className="text-sm">{result.explanation}</p>
-              </div>
+
+              {/*<div className="p-4 rounded-lg bg-secondary/30">*/}
+              {/*  <p className="text-sm font-medium mb-2">AI Analysis:</p>*/}
+              {/*  <p className="text-sm">{result.explanation}</p>*/}
+              {/*</div>*/}
             </CardContent>
             <CardFooter className="justify-center">
               <Button 
