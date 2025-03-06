@@ -164,11 +164,11 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
   // Helper function to get tire compound color
   const getTireCompoundColor = (compound: TireCompound) => {
     switch (compound) {
-      case 'soft':
+      case 'Soft':
         return 'bg-gray-100 dark:bg-gray-300'; //'bg-red-500'
-      case 'medium':
+      case 'Medium':
         return 'bg-yellow-500';
-      case 'hard':
+      case 'Hard':
         return 'bg-red-500';
       default:
         return 'bg-gray-300';
