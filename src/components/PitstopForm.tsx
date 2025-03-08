@@ -216,22 +216,7 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
                   className="input-focus-ring"
                 />
               </div>
-              
-              {/*<div className="space-y-3">*/}
-              {/*  <div className="flex justify-between items-center">*/}
-              {/*    <label className="text-sm font-medium">Race Distance (Laps)</label>*/}
-              {/*    <span className="text-sm bg-secondary px-2 py-0.5 rounded-md">{raceDistance}</span>*/}
-              {/*  </div>*/}
-              {/*  <Slider*/}
-              {/*    value={[raceDistance]}*/}
-              {/*    min={20}*/}
-              {/*    max={90}*/}
-              {/*    step={1}*/}
-              {/*    onValueChange={(value) => setRaceDistance(value[0])}*/}
-              {/*    className="input-focus-ring"*/}
-              {/*  />*/}
-              {/*</div>*/}
-              
+
               <div className="space-y-3 relative">
                 <div className="flex justify-between items-center">
                   <label className="text-sm font-medium flex items-center">
@@ -267,9 +252,7 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
                   onValueChange={(value) => setTopSpeed(value[0])}
                   className="input-focus-ring"
                 />
-                {/*<div className="text-xs text-amber-500 dark:text-amber-400 mt-1">*/}
-                {/*  This feature is under development*/}
-                {/*</div>*/}
+
               </div>
               
               <div className="space-y-3">
@@ -395,8 +378,7 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
                   ></div>
                 </div>
               </div>
-              
-              {/* New Factor: Number of laps on current tires - With Beta Badge */}
+
               <div className="space-y-3 relative">
                 <div className="flex justify-between items-center">
                   <label className="text-sm font-medium flex items-center">
@@ -414,9 +396,6 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
                   onValueChange={(value) => setLapsOnCurrentTires(value[0])}
                   className="input-focus-ring"
                 />
-                {/*<div className="text-xs text-purple-500 dark:text-purple-400 mt-1">*/}
-                {/*  This feature will be used in upcoming versions*/}
-                {/*</div>*/}
               </div>
               
               {/* New Factor: Current tire compound - With Coming Soon Badge */}

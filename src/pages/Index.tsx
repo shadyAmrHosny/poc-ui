@@ -12,31 +12,13 @@ const Index = () => {
       <header className="py-4 px-6 border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10">
           <div className="max-w-6xl mx-auto flex justify-between items-center">
               <div className="flex items-center">
-                  {/*<div className="w-10 h-10 rounded-full bg-racing-red flex items-center justify-center mr-3">*/}
-                  {/*  <span className="text-white font-bold text-xl">F1</span>*/}
-                  {/*</div>*/}
                   <div className="w-10 h-10 rounded-full flex items-center justify-center mr-3">
                       <img src="/favicon.ico" alt="F1 Logo" className="w-full h-full object-contain"/>
                   </div>
                   <span className="font-semibold text-lg">Pitstop Predictor</span>
               </div>
 
-              {/*  <div className="flex items-center space-x-2">*/}
-              {/*      <ThemeToggle/>*/}
-              {/*      <a*/}
-              {/*          href="https://github.com"*/}
-              {/*          target="_blank"*/}
-              {/*    rel="noreferrer"*/}
-              {/*    className="p-2 rounded-full hover:bg-secondary/80 transition-colors"*/}
-              {/*    aria-label="GitHub"*/}
-              {/*  >*/}
-              {/*    <Github size={20} />*/}
-              {/*  </a>*/}
-              {/*</div>*/}
               <div className="flex items-center space-x-4">
-                  {/* Icon on the left */}
-                  {/*<img src="/dv1.svg" alt="Custom Icon" className="w-16 h-16 object-contain"/>*/}
-                  {/* Light Mode Icon */}
                   <img src="/dv1.svg" alt="Light Mode Icon" className="w-16 h-16 object-contain dark:hidden" />
 
                   {/* Dark Mode Icon */}
