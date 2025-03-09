@@ -25,8 +25,12 @@ WORKDIR /usr/share/nginx/html
 # Copy built files to Nginx
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Expose port 80
-EXPOSE 80
+# Remove EXPOSE (Cloud Run automatically sets the port)
+# EXPOSE 8080  <-- REMOVE THIS LINE
+ENV PORT=4000
+
+# Copy custom Nginx config
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]

@@ -1,6 +1,9 @@
 node_modules
 dist
-.vite
-.env
 .git
-.DS_Store
+.github
+.vscode
+*.log
+.env
+.env.*
+!.env.example

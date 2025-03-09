@@ -1,7 +1,7 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PitstopForm from '@/components/PitstopForm';
-import { Github } from 'lucide-react';
+import { Github, Home } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
@@ -19,6 +19,7 @@ const Index = () => {
               </div>
 
               <div className="flex items-center space-x-4">
+                  {/* Light Mode Icon */}
                   <img src="/dv1.svg" alt="Light Mode Icon" className="w-16 h-16 object-contain dark:hidden" />
 
                   {/* Dark Mode Icon */}
@@ -26,6 +27,13 @@ const Index = () => {
 
                   {/* Existing elements */}
                   <div className="flex items-center space-x-2">
+                      <Link 
+                          to="/"
+                          className="p-2 rounded-full hover:bg-secondary/80 transition-colors"
+                          aria-label="Home"
+                      >
+                          <Home size={20}/>
+                      </Link>
                       <ThemeToggle/>
                       <a
                           href="https://github.com"
@@ -38,8 +46,6 @@ const Index = () => {
                       </a>
                   </div>
               </div>
-
-
           </div>
       </header>
 

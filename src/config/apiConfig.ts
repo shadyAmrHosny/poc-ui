@@ -13,11 +13,11 @@ export const apiConfig = {
   // Specific endpoint paths
   endpoints: {
     //pitstopPredictor: '/predict', // Replace with your actual endpoint
-    pitstopPredictor: '/test'
+    pitstopPredictor: '/predict'
   },
   
-  // API timeout in milliseconds (30 seconds)
-  timeout: 30000,
+  // API timeout in milliseconds (60 seconds)
+  timeout: 60000,
   
   // Whether to use mock data instead of actual API calls (for development)
   useMockData: true,

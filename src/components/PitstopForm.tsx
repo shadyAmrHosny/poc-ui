@@ -548,7 +548,7 @@ const PitstopForm: React.FC<PitstopFormProps> = ({ className }) => {
                 {/*</div>*/}
                 <div className="bg-secondary/50 p-6 rounded-lg text-center">
                   <p className="text-sm text-muted-foreground mb-1">Confidence</p>
-                  <p className="text-4xl font-bold">{result.confidence}%</p>
+                  <p className="text-4xl font-bold">{result.prediction}%</p>
                 </div>
                 {/*<div className="bg-secondary/50 p-4 rounded-lg">*/}
                 {/*  <p className="text-sm text-muted-foreground mb-1">Time Gain</p>*/}

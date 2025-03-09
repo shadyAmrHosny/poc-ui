@@ -22,7 +22,7 @@ export interface PitstopPredictionData {
 
 export interface PredictionResult {
   //recommendedLap: number;
-  confidence: number;
+  prediction: number;
   //estimatedTimeGain: string;
  // explanation: string;
 }
