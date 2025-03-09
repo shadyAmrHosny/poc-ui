@@ -31,12 +31,6 @@ export class PitstopService {
   // Use the test URL for sending actual requests
   private static TEST_URL = "http://127.0.0.1:3000/questions/test";
   private static API_URL = `${apiConfig.baseUrl}${apiConfig.endpoints.pitstopPredictor}`;
-  
-  /**
-   * Sends race data to the prediction API (without tyre image)
-   * @param data The pitstop prediction data
-   * @returns Promise containing the prediction result
-   */
 
   static async predictPitstop(data: PitstopPredictionData): Promise<PredictionResult> {
     try {
@@ -47,7 +41,7 @@ export class PitstopService {
 
 
       const requestBody = {
-        fetures:[[
+        features:[[
             data.lapNumber,
             tireCompoundNumber,
             data.driverPosition,
@@ -59,10 +53,11 @@ export class PitstopService {
         ]]
       }
 
-      //console.log("Sending JSON data to backend:", requestBody);
+
+      console.log("Sending JSON data to backend:", requestBody);
 
       console.log(`am sending to the ur\`${this.API_URL}\``)
-      console.log('the data am sending',requestBody)
+     // console.log('the data am sending',requestBody)
       const response = await fetch(this.API_URL, {
         method: 'POST',
         headers: {
@@ -75,7 +70,12 @@ export class PitstopService {
         throw new Error(`API error: ${response.status} ${response.statusText}`);
       }
 
-      const result = await response.json();
+      let result = await response.json();
+       result = Object.fromEntries(
+           Object.entries(result).map(([key, value]) =>
+               typeof value === 'number' ? [key, parseFloat(value.toFixed(3))] : [key, value]
+           )
+       );
       console.log("Received response:", result);
 
       return result as PredictionResult;
