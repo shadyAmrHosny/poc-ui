@@ -17,8 +17,8 @@ export const apiConfig = {
   },
   
   // API timeout in milliseconds (60 seconds)
-  timeout: 60000,
-  
-  // Whether to use mock data instead of actual API calls (for development)
-  useMockData: true,
+  // timeout: 60000,
+  //
+  // // Whether to use mock data instead of actual API calls (for development)
+  // useMockData: true,
 };
