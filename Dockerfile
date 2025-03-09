@@ -1,36 +1,22 @@
-# Stage 1: Build the Vite app
-FROM node:18 AS builder
+FROM node:latest
 
 WORKDIR /app
 
-# Copy package files and install dependencies
-COPY package.json package-lock.json ./
+COPY package*.json ./
+
 RUN npm install
 
-# Copy the rest of the project
+RUN if [ ! -d "/.npm" ]; then mkdir /.npm; fi
+RUN if [ ! -d "/app/.angular" ]; then mkdir /app/.angular; fi
+RUN chmod -R 777 /app/node_modules
+
+RUN chmod -R 777 /app
+RUN mkdir -p /app/node_modules/.vite && chmod -R 777 /app/node_modules/.vite
+RUN chown -R node:node /app
+USER node
+
 COPY . .
 
-# Pass the backend API URL at build time
-ARG VITE_BASE_URL
-ENV VITE_BASE_URL=${VITE_BASE_URL}
+EXPOSE 5173
 
-# Build the app with the correct API URL
-RUN VITE_BASE_URL=${VITE_BASE_URL} npm run build
-
-# Stage 2: Serve with Nginx
-FROM nginx:alpine
-
-WORKDIR /usr/share/nginx/html
-
-# Copy built files to Nginx
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Remove EXPOSE (Cloud Run automatically sets the port)
-# EXPOSE 8080  <-- REMOVE THIS LINE
-ENV PORT=4000
-
-# Copy custom Nginx config
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "run", "dev"]
